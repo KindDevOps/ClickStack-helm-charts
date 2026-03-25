@@ -86,10 +86,12 @@ jobs:
       - name: Deploy ClickStack chart (Phase 2)
         run: |
           # Create test values for faster deployment
-          cat > test-values.yaml << EOF
+          cat > test-values.yaml << 'EOF'
           hyperdx:
             secrets:
               HYPERDX_API_KEY: "test-api-key-for-ci"
+            config:
+              OPAMP_SERVER_URL: ""
             deployment:
               replicas: 1
             service:
@@ -139,11 +141,16 @@ jobs:
 
           kubectl get services
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Run comprehensive smoke tests
         run: |
           chmod +x ./scripts/smoke-test.sh
 
-          RELEASE_NAME=hyperdx-test NAMESPACE=default ./scripts/smoke-test.sh
+          TIMEOUT=300 RELEASE_NAME=hyperdx-test NAMESPACE=default ./scripts/smoke-test.sh
 
       - name: Collect logs on failure
         if: failure()
