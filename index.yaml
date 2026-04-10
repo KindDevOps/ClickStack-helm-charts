@@ -1,0 +1,54 @@
+apiVersion: v1
+entries:
+  clickstack:
+  - annotations:
+      artifacthub.io/license: MIT
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/hyperdxio/helm-charts
+        - name: Upstream Project
+          url: https://github.com/hyperdxio/hyperdx
+    apiVersion: v2
+    appVersion: 2.22.1
+    created: "2026-04-02T13:35:11.647534768Z"
+    dependencies:
+    - alias: otel-collector
+      condition: otel-collector.enabled
+      name: opentelemetry-collector
+      repository: https://kinddevops.github.io/opentelemetry-helm-charts
+      version: 0.147.1
+    description: A Helm chart for ClickStack - Full-stack observability with ClickHouse,
+      OpenTelemetry, and HyperDX
+    digest: d0132c1acc8ef12e65286b4a58d4bcda0f9fb225ed695f43df2494f9015decb1
+    home: https://clickhouse.com/docs/use-cases/observability/clickstack
+    name: clickstack
+    sources:
+    - https://github.com/hyperdxio/hyperdx
+    - https://github.com/hyperdxio/helm-charts
+    type: application
+    urls:
+    - https://github.com/KindDevOps/ClickStack-helm-charts/releases/download/clickstack-2.1.1/clickstack-2.1.1.tgz
+    version: 2.1.1
+  clickstack-operators:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-04-10T15:06:53.459188978Z"
+    dependencies:
+    - alias: mongodb-operator
+      name: mongodb-kubernetes
+      repository: https://mongodb.github.io/helm-charts
+      version: ~1.7.0
+    - alias: clickhouse-operator
+      name: clickhouse-operator-helm
+      repository: oci://ghcr.io/clickhouse
+      version: ~0.0.2
+    description: Operator dependencies for ClickStack. Install this chart before installing
+      clickstack/clickstack to ensure CRDs are registered.
+    digest: 9ec97306dc359dee735b4335a8a4ea3cc8a4fefa8191bf35180989c2b95778c4
+    home: https://clickhouse.com/docs/use-cases/observability/clickstack
+    name: clickstack-operators
+    type: application
+    urls:
+    - https://github.com/KindDevOps/ClickStack-helm-charts/releases/download/clickstack-operators-1.0.0/clickstack-operators-1.0.0.tgz
+    version: 1.0.0
+generated: "2026-04-10T15:06:53.459199278Z"
